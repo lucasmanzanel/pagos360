@@ -1,1 +1,30 @@
-<p>tabla works!</p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="informed_date">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let element"> {{element.informed_date | date:'short'}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="request_id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.request_id}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="payer_name">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.payer_name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="channel">
+      <th mat-header-cell *matHeaderCellDef> Canal </th>
+      <td mat-cell *matCellDef="let element"> {{element.channel}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of cobranzas"></mat-paginator>
+  
+  

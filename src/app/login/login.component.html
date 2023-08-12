@@ -9,16 +9,17 @@
                     <img src="../../assets/logo360.webp" alt="logopagos360" width="50%">
                     <hr>
                 </div>
-                  <form>
+                  <form [formGroup]="form360" (ngSubmit)="ingresar()">
                   <div class="form-floating mb-3">
-                    <input autocomplete="off" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input formControlName="user" autocomplete="off" type="email" 
+                    class="form-control" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput">Usuario</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input autocomplete="off" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input formControlName="password" autocomplete="off" type="password" 
+                    class="form-control" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Contraseña</label>
                   </div>
-  
                   <div class="d-grid">
                     <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Ingresar</button>
                   </div>

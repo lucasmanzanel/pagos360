@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,12 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
 
 
-  constructor() {}
+  constructor(private router:Router) {}
+
+  logout(){
+    this.router.navigate(['login'])
+    localStorage.clear()
+  }
 
 
 

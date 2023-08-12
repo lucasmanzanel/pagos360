@@ -22,7 +22,7 @@ import { AuthInterceptor } from './auth/interceptor/auth.interceptor';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

@@ -1,49 +1,55 @@
 <div class="card">
-  <p-table 
-  [value]="cobranzas" 
-  [tableStyle]="{ 'min-width': '50rem' }"
-  [paginator]="true"
-  [rows]="5"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Muestra {first} a {last} de {totalRecords} entradas"
-  [rowsPerPageOptions]="[10, 25, 50]"
->
-  <ng-template pTemplate="header">
+  <p-table [value]="cobranzas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="5"
+    [showCurrentPageReport]="true" currentPageReportTemplate="Muestra {first} a {last} de {totalRecords} entradas"
+    [rowsPerPageOptions]="[5, 10, 25, 50]">
+
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <span class="p-input-icon-left ml-auto">
+          <form [formGroup]="searchForm">
+            <p-calendar type="date" id="searchDate" formControlName="fecha" (ngModelChange)="buscarFecha()"
+              [showIcon]="true"></p-calendar>
+          </form>
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
       <tr>
         <!-- TAMBIEN PODRIA HABER RECORRIDO EL NOMBRE DE LAS COLUMNAS -->
         <!-- PERO PREFERI DEJARSELOS EN NOMBRE ENTENDIBLES -->
-          <th pSortableColumn="informed_date" style="width:16%">Fecha<p-sortIcon field="code"></p-sortIcon></th>
-          <th pSortableColumn="request_id" style="width:12%">ID<p-sortIcon field="request_id"></p-sortIcon></th>
-          <th pSortableColumn="payer_name" style="width:12%">Nombre<p-sortIcon field="payer_name"></p-sortIcon></th>
-          <th pSortableColumn="channel" style="width:12%">Canal<p-sortIcon field="channel"></p-sortIcon></th>
-          <th pSortableColumn="net_fee" style="width:12%">Tarifa neta<p-sortIcon field="net_fee"></p-sortIcon></th>
-          <th pSortableColumn="iva_fee" style="width:12%">Tarifa IVA<p-sortIcon field="iva_fee"></p-sortIcon></th>
-          <th pSortableColumn="net_amount" style="width:12%">Importe neto<p-sortIcon field="net_amount"></p-sortIcon></th>
-          <th pSortableColumn="available_at" style="width:12%">Disponible<p-sortIcon field="available_at"></p-sortIcon></th>
+        <th pSortableColumn="informed_date" style="width:16%">Fecha<p-sortIcon field="code"></p-sortIcon></th>
+        <th pSortableColumn="request_id" style="width:12%">ID<p-sortIcon field="request_id"></p-sortIcon></th>
+        <th pSortableColumn="payer_name" style="width:12%">Nombre<p-sortIcon field="payer_name"></p-sortIcon></th>
+        <th pSortableColumn="channel" style="width:12%">Canal<p-sortIcon field="channel"></p-sortIcon></th>
+        <th pSortableColumn="net_fee" style="width:12%">Neto<p-sortIcon field="net_fee"></p-sortIcon></th>
+        <th pSortableColumn="iva_fee" style="width:12%">IVA<p-sortIcon field="iva_fee"></p-sortIcon></th>
+        <th pSortableColumn="net_amount" style="width:12%">Importe<p-sortIcon field="net_amount"></p-sortIcon></th>
+        <th pSortableColumn="available_at" style="width:12%">Disponible<p-sortIcon field="available_at"></p-sortIcon>
+        </th>
       </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-data>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
       <tr>
         <!-- TENGO DOS FORMAS UTILIZAR PIPE PARA CONVERTIR DATOS -->
         <!-- LOS PREDETERMINADOS POR ANGULAR O PIPE PERSONALIZADOS -->
         <!-- ESTE ES EL POR DEFECTO DE ANGULAR -->
-          <td>{{ data.informed_date | date:'short' }}</td>
-          <td>{{ data.request_id }}</td>
-          <td>{{ data.payer_name }}</td>
-          <td>{{ data.channel }}</td>
-          <td>{{ data.net_fee | currency }}</td>
-          <td>{{ data.iva_fee | currency }}</td>
-          <td>{{ data.net_amount | currency }}</td>
-          <!-- PERSONALIZADO -->
-          <td>{{ data.available_at | fechaFormato:'dd/MM/yyyy' }}</td>
+        <td>{{ data.informed_date | date:'short' }}</td>
+        <td>{{ data.request_id }}</td>
+        <td>{{ data.payer_name }}</td>
+        <td>{{ data.channel }}</td>
+        <td>{{ data.net_fee | currency }}</td>
+        <td>{{ data.iva_fee | currency }}</td>
+        <td>{{ data.net_amount | currency }}</td>
+        <!-- PERSONALIZADO -->
+        <td>{{ data.available_at | fechaFormato:'dd/MM/yyyy' }}</td>
 
       </tr>
-  </ng-template>
-  <ng-template pTemplate="paginatorleft">
-    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
-</ng-template>
-<ng-template pTemplate="paginatorright">
-    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
-</ng-template>
-</p-table>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+      <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+  </p-table>
 </div>

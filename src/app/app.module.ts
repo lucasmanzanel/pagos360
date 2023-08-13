@@ -10,11 +10,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/interceptor/auth.interceptor';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { LoaderInterceptor } from './shared/interceptor/loader.interceptor';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -22,9 +26,12 @@ import { AuthInterceptor } from './auth/interceptor/auth.interceptor';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ProgressSpinnerModule,
     SweetAlert2Module.forRoot(),
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass:LoaderInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

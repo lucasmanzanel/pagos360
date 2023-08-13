@@ -39,8 +39,6 @@ export class TablaComponent implements OnInit  {
     this.cs.getCobranzas(formatDate)
     .subscribe(({data}) => {
       this.cobranzas = data
-    }, error => {
-      Swal.fire('Error','Podria considerarse como que existen datos en esa fecha','info')
     })
   }
 

@@ -13,7 +13,7 @@
                   <div class="form-floating mb-3">
                     <input formControlName="user" autocomplete="off" type="email" 
                     class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Usuario</label>
+                    <label for="floatingInput">Email</label>
                   </div>
                   <div class="form-floating mb-3">
                     <input formControlName="password" autocomplete="off" type="password" 
@@ -21,7 +21,7 @@
                     <label for="floatingPassword">Contraseña</label>
                   </div>
                   <div class="d-grid">
-                    <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Ingresar</button>
+                    <button [disabled]="form360.invalid" class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Ingresar</button>
                   </div>
                 </form>
               </div>

@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
 
 
-  constructor(private router:Router) {}
+  constructor(
+    private router:Router) {}
 
   logout(){
     this.router.navigate(['login'])

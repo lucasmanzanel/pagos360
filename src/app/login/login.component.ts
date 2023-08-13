@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms'
 import {Validators} from '@angular/forms'
 import Swal from 'sweetalert2';
@@ -12,9 +12,12 @@ import { AuthService } from '../auth/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit  {
 
   form360:any;
+  isLogged:boolean = false
+
+
 
   constructor(
     private fb:FormBuilder,
@@ -26,7 +29,16 @@ export class LoginComponent {
       user: ['',[Validators.required,Validators.email]],
       password:['',[Validators.required]]
     })
+  }
 
+  ngOnInit(): void {
+
+    if (!localStorage.getItem('uid')){
+      this.router.navigate(['/'])
+    }else{
+      this.router.navigate(['dashboard'])
+    }
+    
   }
 
   ingresar(){
@@ -35,13 +47,13 @@ export class LoginComponent {
       localStorage.setItem('apiKey',`${environment.apiKey}`)
       this.router.navigate(['/dashboard'])
       localStorage.setItem('uid',m.user?.uid!)
-
       this.toastr.success('Espero que guste','Bienvenido',)
 
     })
     .catch((e) => {
       this.toastr.error('Error de credenciales','Intente nuevamente')
       this.form360.reset()
+      this.isLogged = false
     })
 
 
